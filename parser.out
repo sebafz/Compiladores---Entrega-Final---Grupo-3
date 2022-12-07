@@ -1,0 +1,2889 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> INICIO
+Rule 1     INICIO -> begin LIBRERIAS CUERPO end
+Rule 2     LIBRERIAS -> LIBRERIASP
+Rule 3     LIBRERIAS -> EMPTY
+Rule 4     LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS
+Rule 5     CUERPO -> VAR CUERPO
+Rule 6     CUERPO -> ASIGN CUERPO
+Rule 7     CUERPO -> FUNC CUERPO
+Rule 8     CUERPO -> COMENTARIO CUERPO
+Rule 9     CUERPO -> SI CUERPO
+Rule 10    CUERPO -> SINO CUERPO
+Rule 11    CUERPO -> MIENTRAS CUERPO
+Rule 12    CUERPO -> PIN CUERPO
+Rule 13    CUERPO -> MOV CUERPO
+Rule 14    CUERPO -> EMPTY
+Rule 15    VAR -> var palResString dosPuntos nomVar finLinea
+Rule 16    VAR -> var palResInt dosPuntos nomVar finLinea
+Rule 17    VAR -> var palResFloat dosPuntos nomVar finLinea
+Rule 18    VAR -> var palResBool dosPuntos nomVar finLinea
+Rule 19    ASIGN -> nomVar igual string finLinea
+Rule 20    ASIGN -> nomVar igual int finLinea
+Rule 21    ASIGN -> nomVar igual float finLinea
+Rule 22    ASIGN -> nomVar igual true finLinea
+Rule 23    ASIGN -> nomVar igual false finLinea
+Rule 24    ASIGN -> nomVar igual nomVar finLinea
+Rule 25    FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+Rule 26    FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+Rule 27    PARAM -> TIPODATO dosPuntos nomVar
+Rule 28    PARAM -> TIPODATO dosPuntos nomVar coma PARAM
+Rule 29    PARAM -> EMPTY
+Rule 30    TIPODATO -> palResInt
+Rule 31    TIPODATO -> palResString
+Rule 32    TIPODATO -> palResFloat
+Rule 33    TIPODATO -> palResBool
+Rule 34    COMENTARIO -> comBloque
+Rule 35    COMENTARIO -> comLinea
+Rule 36    SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+Rule 37    SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+Rule 38    MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+Rule 39    COMPARACION -> VALORVAR comp VALORVAR
+Rule 40    COMPARACION -> nomVar comp VALORVAR
+Rule 41    COMPARACION -> nomVar comp nomVar
+Rule 42    COMPARACION -> false
+Rule 43    COMPARACION -> true
+Rule 44    COMPARACION -> nomVar
+Rule 45    VALORVAR -> string
+Rule 46    VALORVAR -> true
+Rule 47    VALORVAR -> false
+Rule 48    VALORVAR -> int
+Rule 49    VALORVAR -> float
+Rule 50    PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+Rule 51    PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea
+Rule 52    MOV -> adel parAb parCerr finLinea
+Rule 53    MOV -> atras parAb parCerr finLinea
+Rule 54    MOV -> izq parAb parCerr finLinea
+Rule 55    MOV -> der parAb parCerr finLinea
+Rule 56    MOV -> stop parAb parCerr finLinea
+Rule 57    MOV -> esp parAb int parCerr finLinea
+Rule 58    MOV -> esp parAb float parCerr finLinea
+Rule 59    EMPTY -> <empty>
+
+Terminals, with rules where they appear
+
+adel                 : 52
+atras                : 53
+begin                : 1
+comBloque            : 34
+comLinea             : 35
+coma                 : 28
+comp                 : 39 40 41
+corchAb              : 25 26 36 37 37 38
+corchCerr            : 25 26 36 37 37 38
+der                  : 55
+dosPuntos            : 15 16 17 18 26 27 28 50 51
+end                  : 1
+entonces             : 36 37
+error                : 
+esp                  : 57 58
+false                : 23 42 47
+finLinea             : 4 15 16 17 18 19 20 21 22 23 24 25 26 36 37 38 50 51 52 53 54 55 56 57 58
+float                : 21 49 58
+igual                : 19 20 21 22 23 24
+int                  : 20 48 57
+izq                  : 54
+lib                  : 4
+mientras             : 38
+nomLib               : 4
+nomVar               : 15 16 17 18 19 20 21 22 23 24 24 25 26 27 28 40 41 41 44 50 51
+palResBool           : 18 33
+palResFloat          : 17 32
+palResInt            : 16 30
+palResString         : 15 31
+parAb                : 4 25 26 36 37 38 50 51 52 53 54 55 56 57 58
+parCerr              : 4 25 26 36 37 38 50 51 52 53 54 55 56 57 58
+pin                  : 50 51
+pinEnt               : 50
+pinSal               : 51
+proc                 : 25 26
+si                   : 36 37
+sino                 : 37 38
+stop                 : 56
+string               : 19 45
+true                 : 22 43 46
+var                  : 15 16 17 18
+
+Nonterminals, with rules where they appear
+
+ASIGN                : 6
+COMENTARIO           : 8
+COMPARACION          : 36 37 38
+CUERPO               : 1 5 6 7 8 9 10 11 12 13 25 26 36 37 37 38
+EMPTY                : 3 14 29
+FUNC                 : 7
+INICIO               : 0
+LIBRERIAS            : 1 4
+LIBRERIASP           : 2
+MIENTRAS             : 11
+MOV                  : 13
+PARAM                : 25 26 28
+PIN                  : 12
+SI                   : 9
+SINO                 : 10
+TIPODATO             : 26 27 28
+VALORVAR             : 39 39 40
+VAR                  : 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . INICIO
+    (1) INICIO -> . begin LIBRERIAS CUERPO end
+
+    begin           shift and go to state 2
+
+    INICIO                         shift and go to state 1
+
+state 1
+
+    (0) S' -> INICIO .
+
+
+
+state 2
+
+    (1) INICIO -> begin . LIBRERIAS CUERPO end
+    (2) LIBRERIAS -> . LIBRERIASP
+    (3) LIBRERIAS -> . EMPTY
+    (4) LIBRERIASP -> . lib parAb nomLib parCerr finLinea LIBRERIAS
+    (59) EMPTY -> .
+
+    lib             shift and go to state 6
+    var             reduce using rule 59 (EMPTY -> .)
+    nomVar          reduce using rule 59 (EMPTY -> .)
+    proc            reduce using rule 59 (EMPTY -> .)
+    comBloque       reduce using rule 59 (EMPTY -> .)
+    comLinea        reduce using rule 59 (EMPTY -> .)
+    si              reduce using rule 59 (EMPTY -> .)
+    mientras        reduce using rule 59 (EMPTY -> .)
+    pin             reduce using rule 59 (EMPTY -> .)
+    adel            reduce using rule 59 (EMPTY -> .)
+    atras           reduce using rule 59 (EMPTY -> .)
+    izq             reduce using rule 59 (EMPTY -> .)
+    der             reduce using rule 59 (EMPTY -> .)
+    stop            reduce using rule 59 (EMPTY -> .)
+    esp             reduce using rule 59 (EMPTY -> .)
+    end             reduce using rule 59 (EMPTY -> .)
+
+    LIBRERIAS                      shift and go to state 3
+    LIBRERIASP                     shift and go to state 4
+    EMPTY                          shift and go to state 5
+
+state 3
+
+    (1) INICIO -> begin LIBRERIAS . CUERPO end
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+
+    CUERPO                         shift and go to state 7
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 4
+
+    (2) LIBRERIAS -> LIBRERIASP .
+
+    var             reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    nomVar          reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    proc            reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    comBloque       reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    comLinea        reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    si              reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    mientras        reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    pin             reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    adel            reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    atras           reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    izq             reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    der             reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    stop            reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    esp             reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+    end             reduce using rule 2 (LIBRERIAS -> LIBRERIASP .)
+
+
+state 5
+
+    (3) LIBRERIAS -> EMPTY .
+
+    var             reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    nomVar          reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    proc            reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    comBloque       reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    comLinea        reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    si              reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    mientras        reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    pin             reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    adel            reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    atras           reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    izq             reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    der             reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    stop            reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    esp             reduce using rule 3 (LIBRERIAS -> EMPTY .)
+    end             reduce using rule 3 (LIBRERIAS -> EMPTY .)
+
+
+state 6
+
+    (4) LIBRERIASP -> lib . parAb nomLib parCerr finLinea LIBRERIAS
+
+    parAb           shift and go to state 32
+
+
+state 7
+
+    (1) INICIO -> begin LIBRERIAS CUERPO . end
+
+    end             shift and go to state 33
+
+
+state 8
+
+    (5) CUERPO -> VAR . CUERPO
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    VAR                            shift and go to state 8
+    CUERPO                         shift and go to state 34
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 9
+
+    (6) CUERPO -> ASIGN . CUERPO
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    ASIGN                          shift and go to state 9
+    CUERPO                         shift and go to state 35
+    VAR                            shift and go to state 8
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 10
+
+    (7) CUERPO -> FUNC . CUERPO
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    FUNC                           shift and go to state 10
+    CUERPO                         shift and go to state 36
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 11
+
+    (8) CUERPO -> COMENTARIO . CUERPO
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    COMENTARIO                     shift and go to state 11
+    CUERPO                         shift and go to state 37
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 12
+
+    (9) CUERPO -> SI . CUERPO
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    SI                             shift and go to state 12
+    CUERPO                         shift and go to state 38
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 13
+
+    (10) CUERPO -> SINO . CUERPO
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    SINO                           shift and go to state 13
+    CUERPO                         shift and go to state 39
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 14
+
+    (11) CUERPO -> MIENTRAS . CUERPO
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    MIENTRAS                       shift and go to state 14
+    CUERPO                         shift and go to state 40
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 15
+
+    (12) CUERPO -> PIN . CUERPO
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    PIN                            shift and go to state 15
+    CUERPO                         shift and go to state 41
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 16
+
+    (13) CUERPO -> MOV . CUERPO
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    end             reduce using rule 59 (EMPTY -> .)
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    MOV                            shift and go to state 16
+    CUERPO                         shift and go to state 42
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    EMPTY                          shift and go to state 17
+
+state 17
+
+    (14) CUERPO -> EMPTY .
+
+    end             reduce using rule 14 (CUERPO -> EMPTY .)
+    corchCerr       reduce using rule 14 (CUERPO -> EMPTY .)
+
+
+state 18
+
+    (15) VAR -> var . palResString dosPuntos nomVar finLinea
+    (16) VAR -> var . palResInt dosPuntos nomVar finLinea
+    (17) VAR -> var . palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> var . palResBool dosPuntos nomVar finLinea
+
+    palResString    shift and go to state 43
+    palResInt       shift and go to state 44
+    palResFloat     shift and go to state 45
+    palResBool      shift and go to state 46
+
+
+state 19
+
+    (19) ASIGN -> nomVar . igual string finLinea
+    (20) ASIGN -> nomVar . igual int finLinea
+    (21) ASIGN -> nomVar . igual float finLinea
+    (22) ASIGN -> nomVar . igual true finLinea
+    (23) ASIGN -> nomVar . igual false finLinea
+    (24) ASIGN -> nomVar . igual nomVar finLinea
+
+    igual           shift and go to state 47
+
+
+state 20
+
+    (25) FUNC -> proc . nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> proc . nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+
+    nomVar          shift and go to state 48
+
+
+state 21
+
+    (34) COMENTARIO -> comBloque .
+
+    var             reduce using rule 34 (COMENTARIO -> comBloque .)
+    nomVar          reduce using rule 34 (COMENTARIO -> comBloque .)
+    proc            reduce using rule 34 (COMENTARIO -> comBloque .)
+    comBloque       reduce using rule 34 (COMENTARIO -> comBloque .)
+    comLinea        reduce using rule 34 (COMENTARIO -> comBloque .)
+    si              reduce using rule 34 (COMENTARIO -> comBloque .)
+    mientras        reduce using rule 34 (COMENTARIO -> comBloque .)
+    pin             reduce using rule 34 (COMENTARIO -> comBloque .)
+    adel            reduce using rule 34 (COMENTARIO -> comBloque .)
+    atras           reduce using rule 34 (COMENTARIO -> comBloque .)
+    izq             reduce using rule 34 (COMENTARIO -> comBloque .)
+    der             reduce using rule 34 (COMENTARIO -> comBloque .)
+    stop            reduce using rule 34 (COMENTARIO -> comBloque .)
+    esp             reduce using rule 34 (COMENTARIO -> comBloque .)
+    end             reduce using rule 34 (COMENTARIO -> comBloque .)
+    corchCerr       reduce using rule 34 (COMENTARIO -> comBloque .)
+
+
+state 22
+
+    (35) COMENTARIO -> comLinea .
+
+    var             reduce using rule 35 (COMENTARIO -> comLinea .)
+    nomVar          reduce using rule 35 (COMENTARIO -> comLinea .)
+    proc            reduce using rule 35 (COMENTARIO -> comLinea .)
+    comBloque       reduce using rule 35 (COMENTARIO -> comLinea .)
+    comLinea        reduce using rule 35 (COMENTARIO -> comLinea .)
+    si              reduce using rule 35 (COMENTARIO -> comLinea .)
+    mientras        reduce using rule 35 (COMENTARIO -> comLinea .)
+    pin             reduce using rule 35 (COMENTARIO -> comLinea .)
+    adel            reduce using rule 35 (COMENTARIO -> comLinea .)
+    atras           reduce using rule 35 (COMENTARIO -> comLinea .)
+    izq             reduce using rule 35 (COMENTARIO -> comLinea .)
+    der             reduce using rule 35 (COMENTARIO -> comLinea .)
+    stop            reduce using rule 35 (COMENTARIO -> comLinea .)
+    esp             reduce using rule 35 (COMENTARIO -> comLinea .)
+    end             reduce using rule 35 (COMENTARIO -> comLinea .)
+    corchCerr       reduce using rule 35 (COMENTARIO -> comLinea .)
+
+
+state 23
+
+    (36) SI -> si . parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> si . parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+
+    parAb           shift and go to state 49
+
+
+state 24
+
+    (38) MIENTRAS -> mientras . parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+
+    parAb           shift and go to state 50
+
+
+state 25
+
+    (50) PIN -> pin . parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> pin . parAb pinSal dosPuntos nomVar parCerr finLinea
+
+    parAb           shift and go to state 51
+
+
+state 26
+
+    (52) MOV -> adel . parAb parCerr finLinea
+
+    parAb           shift and go to state 52
+
+
+state 27
+
+    (53) MOV -> atras . parAb parCerr finLinea
+
+    parAb           shift and go to state 53
+
+
+state 28
+
+    (54) MOV -> izq . parAb parCerr finLinea
+
+    parAb           shift and go to state 54
+
+
+state 29
+
+    (55) MOV -> der . parAb parCerr finLinea
+
+    parAb           shift and go to state 55
+
+
+state 30
+
+    (56) MOV -> stop . parAb parCerr finLinea
+
+    parAb           shift and go to state 56
+
+
+state 31
+
+    (57) MOV -> esp . parAb int parCerr finLinea
+    (58) MOV -> esp . parAb float parCerr finLinea
+
+    parAb           shift and go to state 57
+
+
+state 32
+
+    (4) LIBRERIASP -> lib parAb . nomLib parCerr finLinea LIBRERIAS
+
+    nomLib          shift and go to state 58
+
+
+state 33
+
+    (1) INICIO -> begin LIBRERIAS CUERPO end .
+
+    $end            reduce using rule 1 (INICIO -> begin LIBRERIAS CUERPO end .)
+
+
+state 34
+
+    (5) CUERPO -> VAR CUERPO .
+
+    end             reduce using rule 5 (CUERPO -> VAR CUERPO .)
+    corchCerr       reduce using rule 5 (CUERPO -> VAR CUERPO .)
+
+
+state 35
+
+    (6) CUERPO -> ASIGN CUERPO .
+
+    end             reduce using rule 6 (CUERPO -> ASIGN CUERPO .)
+    corchCerr       reduce using rule 6 (CUERPO -> ASIGN CUERPO .)
+
+
+state 36
+
+    (7) CUERPO -> FUNC CUERPO .
+
+    end             reduce using rule 7 (CUERPO -> FUNC CUERPO .)
+    corchCerr       reduce using rule 7 (CUERPO -> FUNC CUERPO .)
+
+
+state 37
+
+    (8) CUERPO -> COMENTARIO CUERPO .
+
+    end             reduce using rule 8 (CUERPO -> COMENTARIO CUERPO .)
+    corchCerr       reduce using rule 8 (CUERPO -> COMENTARIO CUERPO .)
+
+
+state 38
+
+    (9) CUERPO -> SI CUERPO .
+
+    end             reduce using rule 9 (CUERPO -> SI CUERPO .)
+    corchCerr       reduce using rule 9 (CUERPO -> SI CUERPO .)
+
+
+state 39
+
+    (10) CUERPO -> SINO CUERPO .
+
+    end             reduce using rule 10 (CUERPO -> SINO CUERPO .)
+    corchCerr       reduce using rule 10 (CUERPO -> SINO CUERPO .)
+
+
+state 40
+
+    (11) CUERPO -> MIENTRAS CUERPO .
+
+    end             reduce using rule 11 (CUERPO -> MIENTRAS CUERPO .)
+    corchCerr       reduce using rule 11 (CUERPO -> MIENTRAS CUERPO .)
+
+
+state 41
+
+    (12) CUERPO -> PIN CUERPO .
+
+    end             reduce using rule 12 (CUERPO -> PIN CUERPO .)
+    corchCerr       reduce using rule 12 (CUERPO -> PIN CUERPO .)
+
+
+state 42
+
+    (13) CUERPO -> MOV CUERPO .
+
+    end             reduce using rule 13 (CUERPO -> MOV CUERPO .)
+    corchCerr       reduce using rule 13 (CUERPO -> MOV CUERPO .)
+
+
+state 43
+
+    (15) VAR -> var palResString . dosPuntos nomVar finLinea
+
+    dosPuntos       shift and go to state 59
+
+
+state 44
+
+    (16) VAR -> var palResInt . dosPuntos nomVar finLinea
+
+    dosPuntos       shift and go to state 60
+
+
+state 45
+
+    (17) VAR -> var palResFloat . dosPuntos nomVar finLinea
+
+    dosPuntos       shift and go to state 61
+
+
+state 46
+
+    (18) VAR -> var palResBool . dosPuntos nomVar finLinea
+
+    dosPuntos       shift and go to state 62
+
+
+state 47
+
+    (19) ASIGN -> nomVar igual . string finLinea
+    (20) ASIGN -> nomVar igual . int finLinea
+    (21) ASIGN -> nomVar igual . float finLinea
+    (22) ASIGN -> nomVar igual . true finLinea
+    (23) ASIGN -> nomVar igual . false finLinea
+    (24) ASIGN -> nomVar igual . nomVar finLinea
+
+    string          shift and go to state 64
+    int             shift and go to state 65
+    float           shift and go to state 66
+    true            shift and go to state 67
+    false           shift and go to state 68
+    nomVar          shift and go to state 63
+
+
+state 48
+
+    (25) FUNC -> proc nomVar . parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> proc nomVar . parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+
+    parAb           shift and go to state 69
+
+
+state 49
+
+    (36) SI -> si parAb . COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> si parAb . COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (39) COMPARACION -> . VALORVAR comp VALORVAR
+    (40) COMPARACION -> . nomVar comp VALORVAR
+    (41) COMPARACION -> . nomVar comp nomVar
+    (42) COMPARACION -> . false
+    (43) COMPARACION -> . true
+    (44) COMPARACION -> . nomVar
+    (45) VALORVAR -> . string
+    (46) VALORVAR -> . true
+    (47) VALORVAR -> . false
+    (48) VALORVAR -> . int
+    (49) VALORVAR -> . float
+
+    nomVar          shift and go to state 72
+    false           shift and go to state 73
+    true            shift and go to state 74
+    string          shift and go to state 75
+    int             shift and go to state 76
+    float           shift and go to state 77
+
+    COMPARACION                    shift and go to state 70
+    VALORVAR                       shift and go to state 71
+
+state 50
+
+    (38) MIENTRAS -> mientras parAb . COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (39) COMPARACION -> . VALORVAR comp VALORVAR
+    (40) COMPARACION -> . nomVar comp VALORVAR
+    (41) COMPARACION -> . nomVar comp nomVar
+    (42) COMPARACION -> . false
+    (43) COMPARACION -> . true
+    (44) COMPARACION -> . nomVar
+    (45) VALORVAR -> . string
+    (46) VALORVAR -> . true
+    (47) VALORVAR -> . false
+    (48) VALORVAR -> . int
+    (49) VALORVAR -> . float
+
+    nomVar          shift and go to state 72
+    false           shift and go to state 73
+    true            shift and go to state 74
+    string          shift and go to state 75
+    int             shift and go to state 76
+    float           shift and go to state 77
+
+    COMPARACION                    shift and go to state 78
+    VALORVAR                       shift and go to state 71
+
+state 51
+
+    (50) PIN -> pin parAb . pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> pin parAb . pinSal dosPuntos nomVar parCerr finLinea
+
+    pinEnt          shift and go to state 79
+    pinSal          shift and go to state 80
+
+
+state 52
+
+    (52) MOV -> adel parAb . parCerr finLinea
+
+    parCerr         shift and go to state 81
+
+
+state 53
+
+    (53) MOV -> atras parAb . parCerr finLinea
+
+    parCerr         shift and go to state 82
+
+
+state 54
+
+    (54) MOV -> izq parAb . parCerr finLinea
+
+    parCerr         shift and go to state 83
+
+
+state 55
+
+    (55) MOV -> der parAb . parCerr finLinea
+
+    parCerr         shift and go to state 84
+
+
+state 56
+
+    (56) MOV -> stop parAb . parCerr finLinea
+
+    parCerr         shift and go to state 85
+
+
+state 57
+
+    (57) MOV -> esp parAb . int parCerr finLinea
+    (58) MOV -> esp parAb . float parCerr finLinea
+
+    int             shift and go to state 86
+    float           shift and go to state 87
+
+
+state 58
+
+    (4) LIBRERIASP -> lib parAb nomLib . parCerr finLinea LIBRERIAS
+
+    parCerr         shift and go to state 88
+
+
+state 59
+
+    (15) VAR -> var palResString dosPuntos . nomVar finLinea
+
+    nomVar          shift and go to state 89
+
+
+state 60
+
+    (16) VAR -> var palResInt dosPuntos . nomVar finLinea
+
+    nomVar          shift and go to state 90
+
+
+state 61
+
+    (17) VAR -> var palResFloat dosPuntos . nomVar finLinea
+
+    nomVar          shift and go to state 91
+
+
+state 62
+
+    (18) VAR -> var palResBool dosPuntos . nomVar finLinea
+
+    nomVar          shift and go to state 92
+
+
+state 63
+
+    (24) ASIGN -> nomVar igual nomVar . finLinea
+
+    finLinea        shift and go to state 93
+
+
+state 64
+
+    (19) ASIGN -> nomVar igual string . finLinea
+
+    finLinea        shift and go to state 94
+
+
+state 65
+
+    (20) ASIGN -> nomVar igual int . finLinea
+
+    finLinea        shift and go to state 95
+
+
+state 66
+
+    (21) ASIGN -> nomVar igual float . finLinea
+
+    finLinea        shift and go to state 96
+
+
+state 67
+
+    (22) ASIGN -> nomVar igual true . finLinea
+
+    finLinea        shift and go to state 97
+
+
+state 68
+
+    (23) ASIGN -> nomVar igual false . finLinea
+
+    finLinea        shift and go to state 98
+
+
+state 69
+
+    (25) FUNC -> proc nomVar parAb . PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> proc nomVar parAb . PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (27) PARAM -> . TIPODATO dosPuntos nomVar
+    (28) PARAM -> . TIPODATO dosPuntos nomVar coma PARAM
+    (29) PARAM -> . EMPTY
+    (30) TIPODATO -> . palResInt
+    (31) TIPODATO -> . palResString
+    (32) TIPODATO -> . palResFloat
+    (33) TIPODATO -> . palResBool
+    (59) EMPTY -> .
+
+    palResInt       shift and go to state 102
+    palResString    shift and go to state 103
+    palResFloat     shift and go to state 104
+    palResBool      shift and go to state 105
+    parCerr         reduce using rule 59 (EMPTY -> .)
+
+    PARAM                          shift and go to state 99
+    TIPODATO                       shift and go to state 100
+    EMPTY                          shift and go to state 101
+
+state 70
+
+    (36) SI -> si parAb COMPARACION . parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> si parAb COMPARACION . parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+
+    parCerr         shift and go to state 106
+
+
+state 71
+
+    (39) COMPARACION -> VALORVAR . comp VALORVAR
+
+    comp            shift and go to state 107
+
+
+state 72
+
+    (40) COMPARACION -> nomVar . comp VALORVAR
+    (41) COMPARACION -> nomVar . comp nomVar
+    (44) COMPARACION -> nomVar .
+
+    comp            shift and go to state 108
+    parCerr         reduce using rule 44 (COMPARACION -> nomVar .)
+
+
+state 73
+
+    (42) COMPARACION -> false .
+    (47) VALORVAR -> false .
+
+    parCerr         reduce using rule 42 (COMPARACION -> false .)
+    comp            reduce using rule 47 (VALORVAR -> false .)
+
+
+state 74
+
+    (43) COMPARACION -> true .
+    (46) VALORVAR -> true .
+
+    parCerr         reduce using rule 43 (COMPARACION -> true .)
+    comp            reduce using rule 46 (VALORVAR -> true .)
+
+
+state 75
+
+    (45) VALORVAR -> string .
+
+    comp            reduce using rule 45 (VALORVAR -> string .)
+    parCerr         reduce using rule 45 (VALORVAR -> string .)
+
+
+state 76
+
+    (48) VALORVAR -> int .
+
+    comp            reduce using rule 48 (VALORVAR -> int .)
+    parCerr         reduce using rule 48 (VALORVAR -> int .)
+
+
+state 77
+
+    (49) VALORVAR -> float .
+
+    comp            reduce using rule 49 (VALORVAR -> float .)
+    parCerr         reduce using rule 49 (VALORVAR -> float .)
+
+
+state 78
+
+    (38) MIENTRAS -> mientras parAb COMPARACION . parCerr corchAb CUERPO corchCerr sino finLinea
+
+    parCerr         shift and go to state 109
+
+
+state 79
+
+    (50) PIN -> pin parAb pinEnt . dosPuntos nomVar parCerr finLinea
+
+    dosPuntos       shift and go to state 110
+
+
+state 80
+
+    (51) PIN -> pin parAb pinSal . dosPuntos nomVar parCerr finLinea
+
+    dosPuntos       shift and go to state 111
+
+
+state 81
+
+    (52) MOV -> adel parAb parCerr . finLinea
+
+    finLinea        shift and go to state 112
+
+
+state 82
+
+    (53) MOV -> atras parAb parCerr . finLinea
+
+    finLinea        shift and go to state 113
+
+
+state 83
+
+    (54) MOV -> izq parAb parCerr . finLinea
+
+    finLinea        shift and go to state 114
+
+
+state 84
+
+    (55) MOV -> der parAb parCerr . finLinea
+
+    finLinea        shift and go to state 115
+
+
+state 85
+
+    (56) MOV -> stop parAb parCerr . finLinea
+
+    finLinea        shift and go to state 116
+
+
+state 86
+
+    (57) MOV -> esp parAb int . parCerr finLinea
+
+    parCerr         shift and go to state 117
+
+
+state 87
+
+    (58) MOV -> esp parAb float . parCerr finLinea
+
+    parCerr         shift and go to state 118
+
+
+state 88
+
+    (4) LIBRERIASP -> lib parAb nomLib parCerr . finLinea LIBRERIAS
+
+    finLinea        shift and go to state 119
+
+
+state 89
+
+    (15) VAR -> var palResString dosPuntos nomVar . finLinea
+
+    finLinea        shift and go to state 120
+
+
+state 90
+
+    (16) VAR -> var palResInt dosPuntos nomVar . finLinea
+
+    finLinea        shift and go to state 121
+
+
+state 91
+
+    (17) VAR -> var palResFloat dosPuntos nomVar . finLinea
+
+    finLinea        shift and go to state 122
+
+
+state 92
+
+    (18) VAR -> var palResBool dosPuntos nomVar . finLinea
+
+    finLinea        shift and go to state 123
+
+
+state 93
+
+    (24) ASIGN -> nomVar igual nomVar finLinea .
+
+    var             reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    nomVar          reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    proc            reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    comBloque       reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    comLinea        reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    si              reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    mientras        reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    pin             reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    adel            reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    atras           reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    izq             reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    der             reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    stop            reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    esp             reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    end             reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+    corchCerr       reduce using rule 24 (ASIGN -> nomVar igual nomVar finLinea .)
+
+
+state 94
+
+    (19) ASIGN -> nomVar igual string finLinea .
+
+    var             reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    nomVar          reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    proc            reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    comBloque       reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    comLinea        reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    si              reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    mientras        reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    pin             reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    adel            reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    atras           reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    izq             reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    der             reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    stop            reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    esp             reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    end             reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+    corchCerr       reduce using rule 19 (ASIGN -> nomVar igual string finLinea .)
+
+
+state 95
+
+    (20) ASIGN -> nomVar igual int finLinea .
+
+    var             reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    nomVar          reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    proc            reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    comBloque       reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    comLinea        reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    si              reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    mientras        reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    pin             reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    adel            reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    atras           reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    izq             reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    der             reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    stop            reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    esp             reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    end             reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+    corchCerr       reduce using rule 20 (ASIGN -> nomVar igual int finLinea .)
+
+
+state 96
+
+    (21) ASIGN -> nomVar igual float finLinea .
+
+    var             reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    nomVar          reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    proc            reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    comBloque       reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    comLinea        reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    si              reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    mientras        reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    pin             reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    adel            reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    atras           reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    izq             reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    der             reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    stop            reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    esp             reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    end             reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+    corchCerr       reduce using rule 21 (ASIGN -> nomVar igual float finLinea .)
+
+
+state 97
+
+    (22) ASIGN -> nomVar igual true finLinea .
+
+    var             reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    nomVar          reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    proc            reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    comBloque       reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    comLinea        reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    si              reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    mientras        reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    pin             reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    adel            reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    atras           reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    izq             reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    der             reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    stop            reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    esp             reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    end             reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+    corchCerr       reduce using rule 22 (ASIGN -> nomVar igual true finLinea .)
+
+
+state 98
+
+    (23) ASIGN -> nomVar igual false finLinea .
+
+    var             reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    nomVar          reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    proc            reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    comBloque       reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    comLinea        reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    si              reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    mientras        reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    pin             reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    adel            reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    atras           reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    izq             reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    der             reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    stop            reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    esp             reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    end             reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+    corchCerr       reduce using rule 23 (ASIGN -> nomVar igual false finLinea .)
+
+
+state 99
+
+    (25) FUNC -> proc nomVar parAb PARAM . parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> proc nomVar parAb PARAM . parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+
+    parCerr         shift and go to state 124
+
+
+state 100
+
+    (27) PARAM -> TIPODATO . dosPuntos nomVar
+    (28) PARAM -> TIPODATO . dosPuntos nomVar coma PARAM
+
+    dosPuntos       shift and go to state 125
+
+
+state 101
+
+    (29) PARAM -> EMPTY .
+
+    parCerr         reduce using rule 29 (PARAM -> EMPTY .)
+
+
+state 102
+
+    (30) TIPODATO -> palResInt .
+
+    dosPuntos       reduce using rule 30 (TIPODATO -> palResInt .)
+    corchAb         reduce using rule 30 (TIPODATO -> palResInt .)
+
+
+state 103
+
+    (31) TIPODATO -> palResString .
+
+    dosPuntos       reduce using rule 31 (TIPODATO -> palResString .)
+    corchAb         reduce using rule 31 (TIPODATO -> palResString .)
+
+
+state 104
+
+    (32) TIPODATO -> palResFloat .
+
+    dosPuntos       reduce using rule 32 (TIPODATO -> palResFloat .)
+    corchAb         reduce using rule 32 (TIPODATO -> palResFloat .)
+
+
+state 105
+
+    (33) TIPODATO -> palResBool .
+
+    dosPuntos       reduce using rule 33 (TIPODATO -> palResBool .)
+    corchAb         reduce using rule 33 (TIPODATO -> palResBool .)
+
+
+state 106
+
+    (36) SI -> si parAb COMPARACION parCerr . entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> si parAb COMPARACION parCerr . entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+
+    entonces        shift and go to state 126
+
+
+state 107
+
+    (39) COMPARACION -> VALORVAR comp . VALORVAR
+    (45) VALORVAR -> . string
+    (46) VALORVAR -> . true
+    (47) VALORVAR -> . false
+    (48) VALORVAR -> . int
+    (49) VALORVAR -> . float
+
+    string          shift and go to state 75
+    true            shift and go to state 128
+    false           shift and go to state 129
+    int             shift and go to state 76
+    float           shift and go to state 77
+
+    VALORVAR                       shift and go to state 127
+
+state 108
+
+    (40) COMPARACION -> nomVar comp . VALORVAR
+    (41) COMPARACION -> nomVar comp . nomVar
+    (45) VALORVAR -> . string
+    (46) VALORVAR -> . true
+    (47) VALORVAR -> . false
+    (48) VALORVAR -> . int
+    (49) VALORVAR -> . float
+
+    nomVar          shift and go to state 130
+    string          shift and go to state 75
+    true            shift and go to state 128
+    false           shift and go to state 129
+    int             shift and go to state 76
+    float           shift and go to state 77
+
+    VALORVAR                       shift and go to state 131
+
+state 109
+
+    (38) MIENTRAS -> mientras parAb COMPARACION parCerr . corchAb CUERPO corchCerr sino finLinea
+
+    corchAb         shift and go to state 132
+
+
+state 110
+
+    (50) PIN -> pin parAb pinEnt dosPuntos . nomVar parCerr finLinea
+
+    nomVar          shift and go to state 133
+
+
+state 111
+
+    (51) PIN -> pin parAb pinSal dosPuntos . nomVar parCerr finLinea
+
+    nomVar          shift and go to state 134
+
+
+state 112
+
+    (52) MOV -> adel parAb parCerr finLinea .
+
+    var             reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    nomVar          reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    proc            reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    comBloque       reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    comLinea        reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    si              reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    mientras        reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    pin             reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    adel            reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    atras           reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    izq             reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    der             reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    stop            reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    esp             reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    end             reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+    corchCerr       reduce using rule 52 (MOV -> adel parAb parCerr finLinea .)
+
+
+state 113
+
+    (53) MOV -> atras parAb parCerr finLinea .
+
+    var             reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    nomVar          reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    proc            reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    comBloque       reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    comLinea        reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    si              reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    mientras        reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    pin             reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    adel            reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    atras           reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    izq             reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    der             reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    stop            reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    esp             reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    end             reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+    corchCerr       reduce using rule 53 (MOV -> atras parAb parCerr finLinea .)
+
+
+state 114
+
+    (54) MOV -> izq parAb parCerr finLinea .
+
+    var             reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    nomVar          reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    proc            reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    comBloque       reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    comLinea        reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    si              reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    mientras        reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    pin             reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    adel            reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    atras           reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    izq             reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    der             reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    stop            reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    esp             reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    end             reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+    corchCerr       reduce using rule 54 (MOV -> izq parAb parCerr finLinea .)
+
+
+state 115
+
+    (55) MOV -> der parAb parCerr finLinea .
+
+    var             reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    nomVar          reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    proc            reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    comBloque       reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    comLinea        reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    si              reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    mientras        reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    pin             reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    adel            reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    atras           reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    izq             reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    der             reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    stop            reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    esp             reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    end             reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+    corchCerr       reduce using rule 55 (MOV -> der parAb parCerr finLinea .)
+
+
+state 116
+
+    (56) MOV -> stop parAb parCerr finLinea .
+
+    var             reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    nomVar          reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    proc            reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    comBloque       reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    comLinea        reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    si              reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    mientras        reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    pin             reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    adel            reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    atras           reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    izq             reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    der             reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    stop            reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    esp             reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    end             reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+    corchCerr       reduce using rule 56 (MOV -> stop parAb parCerr finLinea .)
+
+
+state 117
+
+    (57) MOV -> esp parAb int parCerr . finLinea
+
+    finLinea        shift and go to state 135
+
+
+state 118
+
+    (58) MOV -> esp parAb float parCerr . finLinea
+
+    finLinea        shift and go to state 136
+
+
+state 119
+
+    (4) LIBRERIASP -> lib parAb nomLib parCerr finLinea . LIBRERIAS
+    (2) LIBRERIAS -> . LIBRERIASP
+    (3) LIBRERIAS -> . EMPTY
+    (4) LIBRERIASP -> . lib parAb nomLib parCerr finLinea LIBRERIAS
+    (59) EMPTY -> .
+
+    lib             shift and go to state 6
+    var             reduce using rule 59 (EMPTY -> .)
+    nomVar          reduce using rule 59 (EMPTY -> .)
+    proc            reduce using rule 59 (EMPTY -> .)
+    comBloque       reduce using rule 59 (EMPTY -> .)
+    comLinea        reduce using rule 59 (EMPTY -> .)
+    si              reduce using rule 59 (EMPTY -> .)
+    mientras        reduce using rule 59 (EMPTY -> .)
+    pin             reduce using rule 59 (EMPTY -> .)
+    adel            reduce using rule 59 (EMPTY -> .)
+    atras           reduce using rule 59 (EMPTY -> .)
+    izq             reduce using rule 59 (EMPTY -> .)
+    der             reduce using rule 59 (EMPTY -> .)
+    stop            reduce using rule 59 (EMPTY -> .)
+    esp             reduce using rule 59 (EMPTY -> .)
+    end             reduce using rule 59 (EMPTY -> .)
+
+    LIBRERIAS                      shift and go to state 137
+    LIBRERIASP                     shift and go to state 4
+    EMPTY                          shift and go to state 5
+
+state 120
+
+    (15) VAR -> var palResString dosPuntos nomVar finLinea .
+
+    var             reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    nomVar          reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    proc            reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    comBloque       reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    comLinea        reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    si              reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    mientras        reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    pin             reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    adel            reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    atras           reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    izq             reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    der             reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    stop            reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    esp             reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    end             reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+    corchCerr       reduce using rule 15 (VAR -> var palResString dosPuntos nomVar finLinea .)
+
+
+state 121
+
+    (16) VAR -> var palResInt dosPuntos nomVar finLinea .
+
+    var             reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    nomVar          reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    proc            reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    comBloque       reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    comLinea        reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    si              reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    mientras        reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    pin             reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    adel            reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    atras           reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    izq             reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    der             reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    stop            reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    esp             reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    end             reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+    corchCerr       reduce using rule 16 (VAR -> var palResInt dosPuntos nomVar finLinea .)
+
+
+state 122
+
+    (17) VAR -> var palResFloat dosPuntos nomVar finLinea .
+
+    var             reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    nomVar          reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    proc            reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    comBloque       reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    comLinea        reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    si              reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    mientras        reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    pin             reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    adel            reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    atras           reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    izq             reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    der             reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    stop            reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    esp             reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    end             reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+    corchCerr       reduce using rule 17 (VAR -> var palResFloat dosPuntos nomVar finLinea .)
+
+
+state 123
+
+    (18) VAR -> var palResBool dosPuntos nomVar finLinea .
+
+    var             reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    nomVar          reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    proc            reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    comBloque       reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    comLinea        reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    si              reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    mientras        reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    pin             reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    adel            reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    atras           reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    izq             reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    der             reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    stop            reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    esp             reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    end             reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+    corchCerr       reduce using rule 18 (VAR -> var palResBool dosPuntos nomVar finLinea .)
+
+
+state 124
+
+    (25) FUNC -> proc nomVar parAb PARAM parCerr . corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> proc nomVar parAb PARAM parCerr . dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+
+    corchAb         shift and go to state 138
+    dosPuntos       shift and go to state 139
+
+
+state 125
+
+    (27) PARAM -> TIPODATO dosPuntos . nomVar
+    (28) PARAM -> TIPODATO dosPuntos . nomVar coma PARAM
+
+    nomVar          shift and go to state 140
+
+
+state 126
+
+    (36) SI -> si parAb COMPARACION parCerr entonces . corchAb CUERPO corchCerr finLinea
+    (37) SINO -> si parAb COMPARACION parCerr entonces . corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+
+    corchAb         shift and go to state 141
+
+
+state 127
+
+    (39) COMPARACION -> VALORVAR comp VALORVAR .
+
+    parCerr         reduce using rule 39 (COMPARACION -> VALORVAR comp VALORVAR .)
+
+
+state 128
+
+    (46) VALORVAR -> true .
+
+    parCerr         reduce using rule 46 (VALORVAR -> true .)
+
+
+state 129
+
+    (47) VALORVAR -> false .
+
+    parCerr         reduce using rule 47 (VALORVAR -> false .)
+
+
+state 130
+
+    (41) COMPARACION -> nomVar comp nomVar .
+
+    parCerr         reduce using rule 41 (COMPARACION -> nomVar comp nomVar .)
+
+
+state 131
+
+    (40) COMPARACION -> nomVar comp VALORVAR .
+
+    parCerr         reduce using rule 40 (COMPARACION -> nomVar comp VALORVAR .)
+
+
+state 132
+
+    (38) MIENTRAS -> mientras parAb COMPARACION parCerr corchAb . CUERPO corchCerr sino finLinea
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    CUERPO                         shift and go to state 142
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 133
+
+    (50) PIN -> pin parAb pinEnt dosPuntos nomVar . parCerr finLinea
+
+    parCerr         shift and go to state 143
+
+
+state 134
+
+    (51) PIN -> pin parAb pinSal dosPuntos nomVar . parCerr finLinea
+
+    parCerr         shift and go to state 144
+
+
+state 135
+
+    (57) MOV -> esp parAb int parCerr finLinea .
+
+    var             reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    nomVar          reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    proc            reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    comBloque       reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    comLinea        reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    si              reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    mientras        reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    pin             reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    adel            reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    atras           reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    izq             reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    der             reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    stop            reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    esp             reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    end             reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+    corchCerr       reduce using rule 57 (MOV -> esp parAb int parCerr finLinea .)
+
+
+state 136
+
+    (58) MOV -> esp parAb float parCerr finLinea .
+
+    var             reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    nomVar          reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    proc            reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    comBloque       reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    comLinea        reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    si              reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    mientras        reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    pin             reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    adel            reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    atras           reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    izq             reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    der             reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    stop            reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    esp             reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    end             reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+    corchCerr       reduce using rule 58 (MOV -> esp parAb float parCerr finLinea .)
+
+
+state 137
+
+    (4) LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .
+
+    var             reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    nomVar          reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    proc            reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    comBloque       reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    comLinea        reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    si              reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    mientras        reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    pin             reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    adel            reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    atras           reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    izq             reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    der             reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    stop            reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    esp             reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+    end             reduce using rule 4 (LIBRERIASP -> lib parAb nomLib parCerr finLinea LIBRERIAS .)
+
+
+state 138
+
+    (25) FUNC -> proc nomVar parAb PARAM parCerr corchAb . CUERPO corchCerr finLinea
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    CUERPO                         shift and go to state 145
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 139
+
+    (26) FUNC -> proc nomVar parAb PARAM parCerr dosPuntos . TIPODATO corchAb CUERPO corchCerr finLinea
+    (30) TIPODATO -> . palResInt
+    (31) TIPODATO -> . palResString
+    (32) TIPODATO -> . palResFloat
+    (33) TIPODATO -> . palResBool
+
+    palResInt       shift and go to state 102
+    palResString    shift and go to state 103
+    palResFloat     shift and go to state 104
+    palResBool      shift and go to state 105
+
+    TIPODATO                       shift and go to state 146
+
+state 140
+
+    (27) PARAM -> TIPODATO dosPuntos nomVar .
+    (28) PARAM -> TIPODATO dosPuntos nomVar . coma PARAM
+
+    parCerr         reduce using rule 27 (PARAM -> TIPODATO dosPuntos nomVar .)
+    coma            shift and go to state 147
+
+
+state 141
+
+    (36) SI -> si parAb COMPARACION parCerr entonces corchAb . CUERPO corchCerr finLinea
+    (37) SINO -> si parAb COMPARACION parCerr entonces corchAb . CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    CUERPO                         shift and go to state 148
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 142
+
+    (38) MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO . corchCerr sino finLinea
+
+    corchCerr       shift and go to state 149
+
+
+state 143
+
+    (50) PIN -> pin parAb pinEnt dosPuntos nomVar parCerr . finLinea
+
+    finLinea        shift and go to state 150
+
+
+state 144
+
+    (51) PIN -> pin parAb pinSal dosPuntos nomVar parCerr . finLinea
+
+    finLinea        shift and go to state 151
+
+
+state 145
+
+    (25) FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO . corchCerr finLinea
+
+    corchCerr       shift and go to state 152
+
+
+state 146
+
+    (26) FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO . corchAb CUERPO corchCerr finLinea
+
+    corchAb         shift and go to state 153
+
+
+state 147
+
+    (28) PARAM -> TIPODATO dosPuntos nomVar coma . PARAM
+    (27) PARAM -> . TIPODATO dosPuntos nomVar
+    (28) PARAM -> . TIPODATO dosPuntos nomVar coma PARAM
+    (29) PARAM -> . EMPTY
+    (30) TIPODATO -> . palResInt
+    (31) TIPODATO -> . palResString
+    (32) TIPODATO -> . palResFloat
+    (33) TIPODATO -> . palResBool
+    (59) EMPTY -> .
+
+    palResInt       shift and go to state 102
+    palResString    shift and go to state 103
+    palResFloat     shift and go to state 104
+    palResBool      shift and go to state 105
+    parCerr         reduce using rule 59 (EMPTY -> .)
+
+    TIPODATO                       shift and go to state 100
+    PARAM                          shift and go to state 154
+    EMPTY                          shift and go to state 101
+
+state 148
+
+    (36) SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO . corchCerr finLinea
+    (37) SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO . corchCerr sino corchAb CUERPO corchCerr finLinea
+
+    corchCerr       shift and go to state 155
+
+
+state 149
+
+    (38) MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr . sino finLinea
+
+    sino            shift and go to state 156
+
+
+state 150
+
+    (50) PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .
+
+    var             reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    nomVar          reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    proc            reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    comBloque       reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    comLinea        reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    si              reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    mientras        reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    pin             reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    adel            reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    atras           reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    izq             reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    der             reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    stop            reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    esp             reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    end             reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+    corchCerr       reduce using rule 50 (PIN -> pin parAb pinEnt dosPuntos nomVar parCerr finLinea .)
+
+
+state 151
+
+    (51) PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .
+
+    var             reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    nomVar          reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    proc            reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    comBloque       reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    comLinea        reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    si              reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    mientras        reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    pin             reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    adel            reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    atras           reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    izq             reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    der             reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    stop            reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    esp             reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    end             reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+    corchCerr       reduce using rule 51 (PIN -> pin parAb pinSal dosPuntos nomVar parCerr finLinea .)
+
+
+state 152
+
+    (25) FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr . finLinea
+
+    finLinea        shift and go to state 157
+
+
+state 153
+
+    (26) FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb . CUERPO corchCerr finLinea
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    CUERPO                         shift and go to state 158
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 154
+
+    (28) PARAM -> TIPODATO dosPuntos nomVar coma PARAM .
+
+    parCerr         reduce using rule 28 (PARAM -> TIPODATO dosPuntos nomVar coma PARAM .)
+
+
+state 155
+
+    (36) SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr . finLinea
+    (37) SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr . sino corchAb CUERPO corchCerr finLinea
+
+    finLinea        shift and go to state 159
+    sino            shift and go to state 160
+
+
+state 156
+
+    (38) MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino . finLinea
+
+    finLinea        shift and go to state 161
+
+
+state 157
+
+    (25) FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .
+
+    var             reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    nomVar          reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    proc            reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    comBloque       reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    comLinea        reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    si              reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    mientras        reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    pin             reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    adel            reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    atras           reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    izq             reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    der             reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    stop            reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    esp             reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    end             reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+    corchCerr       reduce using rule 25 (FUNC -> proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea .)
+
+
+state 158
+
+    (26) FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO . corchCerr finLinea
+
+    corchCerr       shift and go to state 162
+
+
+state 159
+
+    (36) SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .
+
+    var             reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    nomVar          reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    proc            reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    comBloque       reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    comLinea        reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    si              reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    mientras        reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    pin             reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    adel            reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    atras           reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    izq             reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    der             reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    stop            reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    esp             reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    end             reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+    corchCerr       reduce using rule 36 (SI -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea .)
+
+
+state 160
+
+    (37) SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino . corchAb CUERPO corchCerr finLinea
+
+    corchAb         shift and go to state 163
+
+
+state 161
+
+    (38) MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .
+
+    var             reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    nomVar          reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    proc            reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    comBloque       reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    comLinea        reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    si              reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    mientras        reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    pin             reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    adel            reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    atras           reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    izq             reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    der             reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    stop            reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    esp             reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    end             reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+    corchCerr       reduce using rule 38 (MIENTRAS -> mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea .)
+
+
+state 162
+
+    (26) FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr . finLinea
+
+    finLinea        shift and go to state 164
+
+
+state 163
+
+    (37) SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb . CUERPO corchCerr finLinea
+    (5) CUERPO -> . VAR CUERPO
+    (6) CUERPO -> . ASIGN CUERPO
+    (7) CUERPO -> . FUNC CUERPO
+    (8) CUERPO -> . COMENTARIO CUERPO
+    (9) CUERPO -> . SI CUERPO
+    (10) CUERPO -> . SINO CUERPO
+    (11) CUERPO -> . MIENTRAS CUERPO
+    (12) CUERPO -> . PIN CUERPO
+    (13) CUERPO -> . MOV CUERPO
+    (14) CUERPO -> . EMPTY
+    (15) VAR -> . var palResString dosPuntos nomVar finLinea
+    (16) VAR -> . var palResInt dosPuntos nomVar finLinea
+    (17) VAR -> . var palResFloat dosPuntos nomVar finLinea
+    (18) VAR -> . var palResBool dosPuntos nomVar finLinea
+    (19) ASIGN -> . nomVar igual string finLinea
+    (20) ASIGN -> . nomVar igual int finLinea
+    (21) ASIGN -> . nomVar igual float finLinea
+    (22) ASIGN -> . nomVar igual true finLinea
+    (23) ASIGN -> . nomVar igual false finLinea
+    (24) ASIGN -> . nomVar igual nomVar finLinea
+    (25) FUNC -> . proc nomVar parAb PARAM parCerr corchAb CUERPO corchCerr finLinea
+    (26) FUNC -> . proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea
+    (34) COMENTARIO -> . comBloque
+    (35) COMENTARIO -> . comLinea
+    (36) SI -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr finLinea
+    (37) SINO -> . si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea
+    (38) MIENTRAS -> . mientras parAb COMPARACION parCerr corchAb CUERPO corchCerr sino finLinea
+    (50) PIN -> . pin parAb pinEnt dosPuntos nomVar parCerr finLinea
+    (51) PIN -> . pin parAb pinSal dosPuntos nomVar parCerr finLinea
+    (52) MOV -> . adel parAb parCerr finLinea
+    (53) MOV -> . atras parAb parCerr finLinea
+    (54) MOV -> . izq parAb parCerr finLinea
+    (55) MOV -> . der parAb parCerr finLinea
+    (56) MOV -> . stop parAb parCerr finLinea
+    (57) MOV -> . esp parAb int parCerr finLinea
+    (58) MOV -> . esp parAb float parCerr finLinea
+    (59) EMPTY -> .
+
+    var             shift and go to state 18
+    nomVar          shift and go to state 19
+    proc            shift and go to state 20
+    comBloque       shift and go to state 21
+    comLinea        shift and go to state 22
+    si              shift and go to state 23
+    mientras        shift and go to state 24
+    pin             shift and go to state 25
+    adel            shift and go to state 26
+    atras           shift and go to state 27
+    izq             shift and go to state 28
+    der             shift and go to state 29
+    stop            shift and go to state 30
+    esp             shift and go to state 31
+    corchCerr       reduce using rule 59 (EMPTY -> .)
+
+    CUERPO                         shift and go to state 165
+    VAR                            shift and go to state 8
+    ASIGN                          shift and go to state 9
+    FUNC                           shift and go to state 10
+    COMENTARIO                     shift and go to state 11
+    SI                             shift and go to state 12
+    SINO                           shift and go to state 13
+    MIENTRAS                       shift and go to state 14
+    PIN                            shift and go to state 15
+    MOV                            shift and go to state 16
+    EMPTY                          shift and go to state 17
+
+state 164
+
+    (26) FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .
+
+    var             reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    nomVar          reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    proc            reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    comBloque       reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    comLinea        reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    si              reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    mientras        reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    pin             reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    adel            reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    atras           reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    izq             reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    der             reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    stop            reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    esp             reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    end             reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+    corchCerr       reduce using rule 26 (FUNC -> proc nomVar parAb PARAM parCerr dosPuntos TIPODATO corchAb CUERPO corchCerr finLinea .)
+
+
+state 165
+
+    (37) SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO . corchCerr finLinea
+
+    corchCerr       shift and go to state 166
+
+
+state 166
+
+    (37) SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr . finLinea
+
+    finLinea        shift and go to state 167
+
+
+state 167
+
+    (37) SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .
+
+    var             reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    nomVar          reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    proc            reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    comBloque       reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    comLinea        reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    si              reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    mientras        reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    pin             reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    adel            reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    atras           reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    izq             reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    der             reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    stop            reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    esp             reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    end             reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+    corchCerr       reduce using rule 37 (SINO -> si parAb COMPARACION parCerr entonces corchAb CUERPO corchCerr sino corchAb CUERPO corchCerr finLinea .)
+

@@ -1,0 +1,16 @@
+BEGIN
+INCL(nombreDeLibreria.extension);
+VAR entero:MD1;
+VAR texto:MD2;
+//*VAR logico:MD3;
+MD3=false;*//
+MD2="valor";
+MD1=3;
+//INICIO DE LA SECCION SETUP
+PIN(SAL:MD1);
+PIN(SAL:MD2);
+//INICIO DE LA SECCION LOOP
+ADEL();
+IZQUIERDA();
+STOP();
+END
